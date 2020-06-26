@@ -558,8 +558,8 @@ func main() {
 	// Loop until Readline returns nil (signalling EOF)
 	lastresult := ""
 L:
-	reader := bufio.NewReader(os.Stdin) //RvR
 	for {
+		reader := bufio.NewReader(os.Stdin)      //RvR
 		fmt.Print(prompt)                        //RvR
 		resultTemp, _ := reader.ReadString('\n') //RvR
 		result := &resultTemp                    //RvR
