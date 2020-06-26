@@ -18,9 +18,8 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"github.com/fiorix/go-readline"
-	"github.com/gofinance/ib"
 	"log"
 	"os"
 	"reflect"
@@ -28,6 +27,8 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gofinance/ib"
 )
 
 var shownewline bool = false
@@ -557,8 +558,12 @@ func main() {
 	// Loop until Readline returns nil (signalling EOF)
 	lastresult := ""
 L:
+	reader := bufio.NewReader(os.Stdin) //RvR
 	for {
-		result := readline.Readline(&prompt)
+		fmt.Print(prompt)                        //RvR
+		resultTemp, _ := reader.ReadString('\n') //RvR
+		result := &resultTemp                    //RvR
+		//result := readline.Readline(&prompt)
 		if result == nil {
 			fmt.Println()
 			continue
@@ -577,7 +582,7 @@ L:
 		}
 
 		if *result != "" {
-			readline.AddHistory(*result)
+			//	readline.AddHistory(*result) RvR not sure how to replace this functionality
 		}
 
 		command := strs[0]
