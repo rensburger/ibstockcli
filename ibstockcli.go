@@ -547,10 +547,11 @@ func main() {
 		if ac.engine.State() != ib.EngineReady {
 			log.Fatalf("%s engine is not ready", ac.label)
 		}
+		time.Sleep(1 * time.Second)
 		go engineLoop(ac)
 	}
 
-	time.Sleep(1 * time.Second)
+	//time.Sleep(2 * time.Second)
 
 	acctselect := ""
 	prompt := "> "
@@ -582,7 +583,7 @@ L:
 		}
 
 		if *result != "" {
-			//	readline.AddHistory(*result) RvR not sure how to replace this functionality
+			//	readline.AddHistory(*result) RvR not sure how to replace this functionality without readline
 		}
 
 		command := strs[0]
